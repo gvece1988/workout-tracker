@@ -12,13 +12,19 @@ export class CategoryService {
     return this.storageService.read<Category[]>("categories");
   }
 
-  public addCategory(category: Category) {    
-    let categories: Category[] = this.getCategories();    
+  public addCategory(category: Category) {
+    let categories = this.getCategories();
 
     if (categories == null) {
       categories = [];
-    }    
+    }
     categories.unshift(category);
-    this.storageService.write("categories", categories);    
+    this.storageService.write("categories", categories);
+  }
+
+  public removeCategory(category: Category) {
+    let categories = this.getCategories();
+    categories.splice(categories.indexOf(category));
+    this.storageService.write("categories", categories);
   }
 }

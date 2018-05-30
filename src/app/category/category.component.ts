@@ -20,4 +20,18 @@ export class CategoryComponent implements OnInit {
         this.categoryService.addCategory(this.category);
         this.categories = this.categoryService.getCategories();
     }
+
+    searchCategories(name: string) {
+        let categories = this.categoryService.getCategories();
+        if (name != "") {
+            this.categories = categories.filter((category, index, array) => category.name.search(name) > -1);
+        }
+        else {
+            this.categories = categories;
+        }
+    }
+
+    removeCategory(name: string) {
+        this.categoryService.removeCategory({ "name": name });
+    }
 }

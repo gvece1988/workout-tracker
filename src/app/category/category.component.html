@@ -1,4 +1,7 @@
-<input type="text" name="categoryname" [(ngModel)]="category.name" />
+<p>Search</p>
+<input type="text" #name (keyup)="searchCategories(name.value)" />
+<p>Add</p>
+<input type="text" [(ngModel)]="category.name" />
 <input type="button" value="+" (click)="addCategory()"/>
 
 <ul>
